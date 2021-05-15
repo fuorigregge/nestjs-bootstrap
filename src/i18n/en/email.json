@@ -1,0 +1,11 @@
+{
+    "shared": {
+        "footer_p_1": "This email was created with React.",
+        "footer_p_2": "Copyright -- AWOK"
+    },
+    "registration": {
+        "subject": "Welcome to AWOK",
+        "text": "blabla en"
+    }
+
+}

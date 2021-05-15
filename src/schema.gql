@@ -1,0 +1,55 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Auth {
+  verification_token: String!
+}
+
+type User {
+  id: ID!
+  first_name: String!
+  last_name: String!
+  full_name: String!
+  username: String!
+  current_workspace_id: ID!
+  workspaces_id: [ID!]!
+  auth: Auth!
+  current_workspace: Workspace!
+  workspaces: [Workspace!]!
+}
+
+type Token {
+  token: String!
+  refresh_token: String
+}
+
+type Workspace {
+  id: ID!
+  name: String!
+  created_at: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  me: User!
+}
+
+type Mutation {
+  createUser(user: CreateUserInput!): String!
+  login(password: String!, username: String!): Token!
+  linkSocialAccount(social: String!): Boolean!
+  verifyUser(token: String!): User
+  refreshToken(token: String!): Token!
+}
+
+input CreateUserInput {
+  first_name: String!
+  last_name: String!
+  password: String!
+  username: String!
+}

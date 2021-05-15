@@ -1,0 +1,11 @@
+{
+    "shared": {
+        "footer_p_1": "This email was created with React.",
+        "footer_p_2": "Copyright -- __"
+    },
+    "registration": {
+        "subject": "Benvenuto in __",
+        "text": "blabla it",
+        "verify_account": "Verifica utente"
+    }
+}

@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  mongodb:
+    image: mongo:4.4.5
+    container_name: nestjs_mongo
+    environment:
+      - MONGODB_DATABASE="test"
+    ports:
+      - 27017:27017
+
+  mailhog:
+    container_name: nestjs_mailhog
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"   
+
+  redis: 
+    container_name: nestjs_redis
+    image: redis:6.2.2
+    ports: 
+      - "6379:6379"
