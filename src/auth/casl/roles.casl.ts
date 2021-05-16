@@ -4,6 +4,7 @@ import { User } from 'src/users/schemas/user.schema';
 import { Workspace } from 'src/users/schemas/workspace.schema';
 import { AppAbility } from './ability-factory.casl';
 import { Action } from './actions.casl';
+import { Customer } from 'src/customers/schemas/customer.schema';
 
 export enum Roles {
   SUPERADMIN = 'superadmin',
@@ -34,6 +35,7 @@ export const rolePermissions: Record<Roles, DefinePermissions> = {
         ),
       },
     });
+    can(Action.Manage, Customer, { workspace_id: { $in: user.workspaces_id } });
   },
   manager(user, { can }) {
     can(Action.Manage, User, { workspaces_id: { $in: user.workspaces_id } });    
@@ -44,6 +46,7 @@ export const rolePermissions: Record<Roles, DefinePermissions> = {
         ),
       },
     });
+    can(Action.Manage, Customer, { workspace_id: { $in: user.workspaces_id } });
   },
   member(user, { can }) {    
     can(Action.Manage, User, { _id: user._id });
@@ -54,8 +57,12 @@ export const rolePermissions: Record<Roles, DefinePermissions> = {
         ),
       },
     });
+    can(Action.Manage, Customer, ['id', 'name'], {
+      workspace_id: user.current_workspace_id,
+    })
   },
   guest(user, { can }) {
     can(Action.Manage, User, { _id: user._id });
+
   },
 };

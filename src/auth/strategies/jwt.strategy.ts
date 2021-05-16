@@ -45,6 +45,8 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
       return null;
     }
 
+    if(!user) return null;
+
     if (user.auth.jwt.disabled) {
       return null;
     }

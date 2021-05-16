@@ -10,11 +10,13 @@ import {
 import { Action } from './actions.casl';
 import { Workspace } from 'src/users/schemas/workspace.schema';
 import { rolePermissions } from './roles.casl';
+import { Customer } from 'src/customers/schemas/customer.schema';
 
 export type Resources =
   | InferSubjects<      
       | typeof User      
       | typeof Workspace
+      | typeof Customer
     >
   | 'all';
 

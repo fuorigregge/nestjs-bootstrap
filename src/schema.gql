@@ -35,8 +35,35 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Customer {
+  id: ID!
+  name: String!
+  created_at: DateTime
+}
+
+type PaginatedCustomers {
+  items: [Customer!]
+  pagination: Pagination!
+}
+
+type Pagination {
+  page: Int!
+  pages: Int!
+  current_items: Int!
+  total_items: Int!
+  size: Int!
+}
+
 type Query {
   me: User!
+  customers: [Customer]!
+  paginatedCustomers(pagination: PaginationInput): PaginatedCustomers!
+  customer(id: String!): Customer
+}
+
+input PaginationInput {
+  page: Int = 1
+  limit: Int = 10
 }
 
 type Mutation {
@@ -45,6 +72,8 @@ type Mutation {
   linkSocialAccount(social: String!): Boolean!
   verifyUser(token: String!): User
   refreshToken(token: String!): Token!
+  createCustomer(customer: CreateCustomerInput!): String!
+  updateCustomer(customer: CreateCustomerInput!, id: String!): String!
 }
 
 input CreateUserInput {
@@ -52,4 +81,8 @@ input CreateUserInput {
   last_name: String!
   password: String!
   username: String!
+}
+
+input CreateCustomerInput {
+  name: String!
 }

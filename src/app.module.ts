@@ -13,11 +13,10 @@ import { MailModule } from './mail/mail.module';
 import { I18nJsonParser, I18nModule } from 'nestjs-i18n';
 import path from 'path';
 import { BullModule } from '@nestjs/bull';
+import { CustomersModule } from './customers/customers.module';
 
 @Module({
-  imports: [
-    //non serve importarlo tra i moduli degli altri moduli ma va aggiunto cmq inject oppure gestire con useClass,
-    //accessibile ConfigService con i dati di .env
+  imports: [    
     ConfigModule.forRoot({
       isGlobal: true,
       load: [config],
@@ -61,7 +60,8 @@ import { BullModule } from '@nestjs/bull';
     CaslAbilityFactory,
     CoreModule,
     UsersModule,
-    MailModule
+    MailModule,
+    CustomersModule    
   ],
   controllers: [],
   providers: [],

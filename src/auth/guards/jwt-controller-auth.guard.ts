@@ -6,7 +6,7 @@ export class JwtControllerAuthGuard extends AuthGuard('jwt') {
   handleRequest(err, user, info: Error) {
     if (err || info || !user) {
       //check token expiration
-      throw err || info || new UnauthorizedException();
+      throw err || new UnauthorizedException();
     }
 
     return user;
